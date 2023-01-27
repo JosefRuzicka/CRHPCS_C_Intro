@@ -1,0 +1,14 @@
+#!/bin/sh
+#SBATCH --nodes=1                      #Nodes to use
+#SBATCH --ntasks-per-node=1            #Tasks per node
+#SBATCH --ntasks=1                     #MPI Tasks per node
+#SBATCH --cpus-per-task=8              #Threads per node
+#SBATCH -p nu                          #Kabre Partition
+#SBATCH --time=10:00                   #Time
+echo "Compiling"
+make -j 
+echo "Running on $SLURM_JOB_NODELIST"
+time  ./exe
+make clean
+echo "done"
+
